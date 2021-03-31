@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chrono Trigger</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/c78bc3fc-9f08-47ca-81ae-d89055c7ec49/ddcmfuy-d265fe93-5842-41d9-a854-5b3eaa59ba7d.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvYzc4YmMzZmMtOWYwOC00N2NhLTgxYWUtZDg5MDU1YzdlYzQ5XC9kZGNtZnV5LWQyNjVmZTkzLTU4NDItNDFkOS1hODU0LTViM2VhYTU5YmE3ZC5wbmcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.j3bmm0kOdTIGgMJq6u2caJ_QsVPejv_rOdc7pNba_V4"
+        type="image/x-icon">
+</head>
+
+<body>
+
+    <audio controls autoplay id="myAudio">
+        <source src="./src/bossbattle.mp3" type="audio/mp3">
+    </audio>
+    <audio controls autoplay id="myAudioWinner">
+        <source src="./src/winner.mp3" type="audio/mp3">
+    </audio>
+    <audio controls autoplay id="myAudioLoser">
+        <source src="./src/gameover.mp3" type="audio/mp3">
+    </audio>
+
+    <!-- Princess Talk -->
+    <div class="PrincessTalks" id="congrats">
+        <img src="https://cdn.wikimg.net/en/strategywiki/images/5/58/Chrono_Trigger_Sprites_Queen_Leene.png" alt="">
+        <p>
+            Obrigado aventureiro, sei que você foi forte e corajoso por chegar até aqui, em breve irá encarar novas aventuras, desejo toda sorte e benção deste mundo a você.
+        </p>
+        <br>
+        <button onclick="document.location.reload(true)">Jogar novamente</button>
+
+        <br>
+        <br>
+        <br>
+        <span>Me siga nas redes pra saber um pouco mais sobre meu trabalho</span>
+        <br>
+        <br>
+        <div class="socialMedia">
+            <div>
+                <img src="" alt="">
+                <span><a href="https://github.com/AlehSouza">Github</a></span>
+            </div>
+            <div>
+                <img src="" alt="">
+                <span><a href="https://www.linkedin.com/in/alesouza2503/">LinkedIn</a></span>
+            </div>
+            <div>
+                <img src="" alt="">
+                <span><a href="https://codepen.io/blezale">Codepen</a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="lose" id="lose">
+        <h1>Você morreu</h1>
+        <img src="https://i.kym-cdn.com/photos/images/facebook/001/044/502/c4a.jpg" alt="" width="500px">
+        <button onclick="document.location.reload(true)">Jogar novamente</button>
+    </div>
+
+
+    <!-- FIGHT   -->
+    <div class="fight" id="fight">
+        <div class="containerLuta">
+            <div class="fightVS">
+
+                <div class="enemyHP">
+                    <p class="status" id="hpInimigo">
+                        ?????????
+                    </p>
+                </div>
+                <div class="enemy" id="enemyImg">
+                </div>
+
+                <div class="heroHP">
+                    <p class="status" id="hpAliado"> You </p>
+                </div>
+                <div class="hero" id="heroCaseImg">
+                </div>
+
+            </div>
+
+            <div class="dialog">
+                <img src="https://clubedovideogame.com.br/wp-content/uploads/2020/02/Chrono_Trigger_Portraits_Lucca.png" />
+                <div class="contTextDialog" id="contTextDialog">
+                    <p id="textDialog">
+                        <!--    text dialog        -->
+                        Rápido, Aventureiro estamos com problemas no jardim do castelo, detenha os monstros!
+                    </p>
+                    <div class="actions" id="actions">
+                        <button onclick="startFight()">Ok!</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Transition   -->
+    <div id="transition" class="transition">
+
+    </div>
+
+    <!--  Login jogador  -->
+    <div class="loginJogador" id="loginJogador">
+        <img src="https://cdn2.steamgriddb.com/file/sgdb-cdn/logo_thumb/0396df57e78b6d04b6854dd682e27b3c.png" width="700px" />
+        <p class="apresentation">
+            Olá <input type="text" placeholder="Aventureiro" id="nameTag" maxlength="5">!
+            <br> Você está pronto(a) para embarcar numa aventura?
+            <br> Acredito que você adoraria viajar no tempo, vamos lá, o que está esperando?
+            <br>
+            <br>
+            <span class="warning" id="warning">Não esqueça de escrever o seu nome, aventureiro(a)</span>
+
+        </p>
+
+        <button onclick="jogar()" class="jogar">Jogar</button>
+
+    </div>
+
+    <!-- Select champ   -->
+    <div class="selectChamp" id="selectChamp">
+        <div class="talkWihtPlayer" id="talkWihtPlayer">
+        </div>
+
+        <span class="infoPls"> Clique sobre os botões para saber mais sobre o personagem</span>
+        <div class="buttons">
+            <button onclick="setCaracter(Chrono)">Chrono</button>
+            <button onclick="setCaracter(Marle)">Marle</button>
+            <button onclick="setCaracter(Lucca)">Lucca</button>
+            <button onclick="setCaracter(Frog)">Frog</button>
+            <button onclick="setCaracter(Robo)">Robo</button>
+            <button onclick="setCaracter(Ayla)">Ayla</button>
+            <button onclick="setCaracter(Magus)">Magus</button>
+        </div>
+
+        <div class="boxCaracter" id="boxCaracter">
+        </div>
+        <button class="selected" id="selected" onclick="next()"> Escolher </button>
+        <p id="AventuraBegin"></p>
+    </div>
+
+</body>
+<script src="script.js"></script>
+
+</html>
