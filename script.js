@@ -123,6 +123,7 @@ var heroLife = 60;
 
 function startFight() {
     var maudio = document.getElementById('myAudio');
+    maudio.volume = 0.2;
     maudio.play();
 
     var dialog = document.getElementById('textDialog');
@@ -202,6 +203,7 @@ function enemyAttack() {
 
 function heal() {
     var heal = parseInt(Math.random() * 15);
+    heal += 5;
 
     if (heroLife + heal > 60) {
         console.log('Não pode mais curar');
@@ -224,6 +226,7 @@ function winner() {
     var maudio = document.getElementById('myAudio');
     maudio.pause();
     var winnerAudio = document.getElementById('myAudioWinner');
+    winnerAudio.volume = 0.2;
     winnerAudio.play();
     console.log('cHAMOU FUNÇÃO')
 
@@ -236,6 +239,7 @@ function winner() {
 
 function loser() {
     var maudio = document.getElementById('myAudioLoser');
+    maudio.volume = 0.2;
     maudio.play();
     var lose = document.getElementById('lose');
     lose.style.zIndex = "99999";
